@@ -24,9 +24,9 @@ iframe {
 <form id="form1" action="${path}/upload/uploadForm" method="post" enctype="multipart/form-data" target="iframe1">
 	<input type="file" name="file">
 	<input type="submit" value="업로드">
-</form>
+</form>  
 
 <iframe name="iframe1"></iframe>
-
+ 
 </body>
 </html>

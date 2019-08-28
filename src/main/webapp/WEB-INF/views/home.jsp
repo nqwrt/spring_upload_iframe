@@ -14,6 +14,9 @@
 	Hello world!  
 </h1>
 
+<!-- iframe 요소를 이용하면 해당 웹 페이지 안에 어떠한 제한 없이 또 다른 하나의 웹 페이지를 삽입할 수 있습니다 -->
+<iframe width="640" height="360" frameborder="0" src="https://joont.tistory.com/18"></iframe>
+
 	<a href="${path}/upload/uploadForm">업로드테스트</a>
 
 <P>  The time on the server is ${serverTime}. </P>
