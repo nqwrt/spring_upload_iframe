@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +44,10 @@ public class FileUploadController {
 	
 	//업로드 버튼 => 임시디렉토리업로드 => 파일정보가 file에 저장 => 지정된 디렉토리에 저장
 	@RequestMapping(value = "/upload/uploadForm", method = RequestMethod.POST)
-	public ModelAndView uploadForm(MultipartFile file, ModelAndView mav) throws Exception{
+	public ModelAndView uploadForm(MultipartFile file, ModelAndView mav,HttpServletRequest req) throws Exception{
+		
+		String name = req.getParameter("name");
+		logger.info("그냥이름:" + name);
 		
 		logger.info("파일이름:" + file.getOriginalFilename());
 		String savedName = file.getOriginalFilename();
