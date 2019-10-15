@@ -61,6 +61,28 @@ public class FileUploadController {
 		return mav; // uploadResult.jsp로 포워딩	
 	}
 	
+	@RequestMapping(value = "/mypage/edit", method = RequestMethod.POST)
+	public String mypageInfo(MultipartFile file, HttpServletRequest req) throws Exception{
+		
+		//String name = req.getParameter("name");
+		//logger.info("그냥이름:" + name);
+		
+		if(file == null)
+		{
+			System.out.println("널입니다.");			
+		}
+		
+		logger.info("파일이름:" + file.getOriginalFilename());
+		String savedName = file.getOriginalFilename();
+		
+		logger.info("파일크기:" + file.getSize());
+		logger.info("컨텐트타입:" + file.getContentType());
+		
+		savedName = uploadFile(savedName,file.getBytes());
+	
+		return "/upload/uerEdit"; // uploadResult.jsp로 포워딩	
+	}
+	
 	//파일이름이 중복되지 않도록 처리
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 		

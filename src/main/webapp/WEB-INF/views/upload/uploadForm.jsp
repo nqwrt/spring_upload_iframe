@@ -45,10 +45,10 @@
 		<div class="dropzone" id="fileDropzone"></div>
 	</form> -->
 
-	<form action="${path}/upload/uploadForm" class="dropzone" id="my-awesome-dropzone">
-	     <div class="fallback">
+	<form action="${path}/upload/uploadForm" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
+	   <!--   <div class="fallback">
 	         <input name="file" type="file" />
-	     </div>
+	     </div> -->
 	     <input type="text" name="name">
 	</form>
 	
