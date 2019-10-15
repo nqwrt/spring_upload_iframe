@@ -232,7 +232,7 @@
                                </div>
                                
                               <div class="panel-footer text-right">
-                                      <button class="btn btn-success" id="btnUpload" type="button" >수정완료</button>
+                                      <button class="btn btn-success" id="btnUpload" type="submit" >수정완료</button>
                               </div>
                            </form>
                            <!--===================================================-->
@@ -277,16 +277,25 @@ $(document).ready(function() {
 	
 	var uplodaBtn = $('#dz-upload-btn'); //TODO : 필요없음
 	var removeBtn = $('#dz-remove-btn'); //TODO : 필요없음
-	var myDropzone = new Dropzone("#userForm", { // Make the whole body a dropzone
-		  //url: "/mypage/edit", // Set the url
+	var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+		  url: "${path}/mypage/edit", // Set the url
 		  thumbnailWidth: 80,
 		  thumbnailHeight: 80,
+		  uploadMultiple: true,
 		  parallelUploads: 20,
 		  previewTemplate: previewTemplate,
 		  autoQueue: false, // Make sure the files aren't queued until manually added
 		  previewsContainer: "#dz-previews", // Define the container to display the previews
 		  clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
 	});
+
+	myDropzone.on("addedfile", function(file) {
+		  //console.log(file);
+		  console.log(myDropzone);
+		  // Hookup the start button
+		 // file.previewElement.querySelector("#btn_upload").onclick = function() { myDropzone.enqueueFile(file); };
+	});
+	
 });	
 
 
