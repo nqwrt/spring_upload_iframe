@@ -33,7 +33,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/upload/userEdit";
+		return "/upload/uploadForm";
 	}
 	
 	@RequestMapping(value = "/edit2", method = RequestMethod.GET)

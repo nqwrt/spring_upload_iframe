@@ -72,7 +72,7 @@ min-height: 0px !important;
 	                           </div>
 	                           <!-- BASIC FORM ELEMENTS -->
 	                           <!--===================================================-->
-	                          <form class="panel-body form-horizontal form-padding dropzone" enctype="multipart/form-data" action="${path}/upload/uploadForm" method="post"  id="userForm">
+	                          <form class="panel-body form-horizontal form-padding dropzone" enctype="multipart/form-data" action="${path}/mypage/edit" method="post"  id="userForm">
 	                          	                            <!--  사진 -->
                            <div class="form-group">
                               <label class="col-md-3 control-label">사진</label>
@@ -234,7 +234,7 @@ min-height: 0px !important;
                                    </div>
                                </div>
                               <div class="panel-footer text-right">
-                                      <button id = "btnUpload" class="btn btn-success" type="button" >수정완료</button>
+                                      <button   id = "btnUpload" class="btn btn-success" type="button" >수정완료</button>
                               </div>
 	                     </form> 
 	                           <!--===================================================-->
@@ -268,7 +268,29 @@ min-height: 0px !important;
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+/* 	Dropzone.autoDiscover = false;
+	var previewNode = document.querySelector("#dz-template");
+	previewNode.id = "";
 	
+	var previewTemplate = previewNode.parentNode.innerHTML;
+	previewNode.parentNode.removeChild(previewNode);
+	
+	var myDropzone = new Dropzone(".dropzone", {
+		thumbnailWidth: 80,
+		thumbnailHeight: 80,
+		previewTemplate: previewTemplate, 
+ 	   autoProcessQueue: false,
+	   clickable: ".fileinput-button",
+	   reviewsContainer: "#dz-previews",
+	   parallelUploads: 10 // Number of files process at a time (default 2)
+	});
+
+	$('#btnUpload').click(function(){
+	   myDropzone.processQueue();
+	}); */
+	
+
 	Dropzone.autoDiscover = false;
 	var previewNode = document.querySelector("#dz-template");
 	previewNode.id = "";
@@ -276,20 +298,39 @@ $(document).ready(function() {
 	var previewTemplate = previewNode.parentNode.innerHTML;
 	previewNode.parentNode.removeChild(previewNode);
 	
-	var uplodaBtn = $('#dz-upload-btn'); //TODO : 필요없음
-	var removeBtn = $('#dz-remove-btn'); //TODO : 필요없음
-	var myDropzone = new Dropzone("#userForm", { // Make the whole body a dropzone
-		  url: "${path}/mypage/edit", // Set the url
+	var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+		  url: "${path}/mypage/upload", // Set the url
 		  thumbnailWidth: 80,
 		  thumbnailHeight: 80,
-		  uploadMultiple: true,
-		  parallelUploads: 20,
 		  previewTemplate: previewTemplate,
-		  autoQueue: false, // Make sure the files aren't queued until manually added
+		  autoProcessQueue: false, // Make sure the files aren't queued until manually added
 		  previewsContainer: "#dz-previews", // Define the container to display the previews
 		  clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
+/* 		  sucess:function(file,response)
+		  {
+			alert("성공");  
+		  },
+		  error:function(file,response)
+		  {
+			  alert("error"); 
+		  } */
+		  
+		});
+
+	myDropzone.on('success', function(file, response) {
+		  console.log(file);
+		  console.log(response);
+		  console.log("만세");
+		  checkAndsubmit();
+	});
+		  
+	$('#btnUpload').click(function(){
+		   myDropzone.processQueue();
+
+		   //checkAndsubmit();
 	});
 	
+	/*
 	 Dropzone.options.userForm = {
 	 init: function (e) {
 	    
@@ -299,7 +340,7 @@ $(document).ready(function() {
 	    	 drop.processQueue(); // Tell Dropzone to process all queued files.
 	     });
 	 }
-}; 
+	 */ 
 });	
 
 

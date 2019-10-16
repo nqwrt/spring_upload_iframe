@@ -58,8 +58,19 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+
+	Dropzone.autoDiscover = false;
+
+	var myDropzone = new Dropzone("#my-awesome-dropzone", { 
+	   autoProcessQueue: false,
+	   parallelUploads: 10 // Number of files process at a time (default 2)
+	});
+
+	$('#btn_upload').click(function(){
+	   myDropzone.processQueue();
+	});
 	
-	Dropzone.options.myAwesomeDropzone = {
+/* 	Dropzone.options.myAwesomeDropzone = {
 			
 		    autoProcessQueue: false,
 
@@ -81,7 +92,7 @@ $(document).ready(function() {
 		        });
 
 		    }
-		};
+		}; */
 
 });
 </script>
