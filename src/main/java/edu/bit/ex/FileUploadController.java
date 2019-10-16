@@ -28,71 +28,71 @@ public class FileUploadController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 	
-	// xml¿¡ ¼³Á¤µÈ ¸®¼Ò½ºÂüÁ¶
-	//beanÀÇ id°¡ uploadPathÀÎ ÅÂ±×¸¦ ÂüÁ¶
+	// xmlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½
+	//beanï¿½ï¿½ idï¿½ï¿½ uploadPathï¿½ï¿½ ï¿½Â±×¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	@Resource(name="uploadPath")
 	String uploadPath;
 	
 	
-	// urlÀº °°Áö¸¸ get¹æ½ÄÀ¸·Î ³Ñ¾î¿È
+	// urlï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ getï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½
 	@RequestMapping(value="/upload/uploadForm", method = RequestMethod.GET)
 	public void uploadForm() {
-		// upload/uploadForm.jsp·Î Æ÷¿öµù
+		// upload/uploadForm.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	}
 	
 	
-	//¾÷·Îµå ¹öÆ° => ÀÓ½Ãµğ·ºÅä¸®¾÷·Îµå => ÆÄÀÏÁ¤º¸°¡ file¿¡ ÀúÀå => ÁöÁ¤µÈ µğ·ºÅä¸®¿¡ ÀúÀå
+	//ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ° => ï¿½Ó½Ãµï¿½ï¿½ä¸®ï¿½ï¿½ï¿½Îµï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ fileï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/upload/uploadForm", method = RequestMethod.POST)
 	public ModelAndView uploadForm(MultipartFile file, ModelAndView mav,HttpServletRequest req) throws Exception{
 		
-		String name = req.getParameter("name");
-		logger.info("±×³ÉÀÌ¸§:" + name);
+		String name = req.getParameter("memArea");
+		logger.info("memArea" + name);
 		
-		logger.info("ÆÄÀÏÀÌ¸§:" + file.getOriginalFilename());
+		logger.info("íŒŒì¼ì´ë¦„" + file.getOriginalFilename());
 		String savedName = file.getOriginalFilename();
 		
-		logger.info("ÆÄÀÏÅ©±â:" + file.getSize());
-		logger.info("ÄÁÅÙÆ®Å¸ÀÔ:" + file.getContentType());
+		logger.info("íŒŒì¼ì‚¬ì´ì¦ˆ:" + file.getSize());
+		logger.info("íŒŒì¼íƒ€ì…" + file.getContentType());
 		
 		savedName = uploadFile(savedName,file.getBytes());
 		mav.setViewName("upload/uploadResult");
 		mav.addObject("saveName",savedName);
-		return mav; // uploadResult.jsp·Î Æ÷¿öµù	
+		return mav; // uploadResult.jsp
 	}
 	
 	@RequestMapping(value = "/mypage/edit", method = RequestMethod.POST)
 	public String mypageInfo(MultipartFile file, HttpServletRequest req) throws Exception{
 		
-		//String name = req.getParameter("name");
-		//logger.info("±×³ÉÀÌ¸§:" + name);
+		String name = req.getParameter("memArea");
+		logger.info("memArea" + name);
 		
 		if(file == null)
 		{
-			System.out.println("³ÎÀÔ´Ï´Ù.");			
+			System.out.println("ï¿½ï¿½ï¿½Ô´Ï´ï¿½.");			
 		}
 		
-		logger.info("ÆÄÀÏÀÌ¸§:" + file.getOriginalFilename());
+		logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½:" + file.getOriginalFilename());
 		String savedName = file.getOriginalFilename();
 		
-		logger.info("ÆÄÀÏÅ©±â:" + file.getSize());
-		logger.info("ÄÁÅÙÆ®Å¸ÀÔ:" + file.getContentType());
+		logger.info("ï¿½ï¿½ï¿½ï¿½Å©ï¿½ï¿½:" + file.getSize());
+		logger.info("ï¿½ï¿½ï¿½ï¿½Æ®Å¸ï¿½ï¿½:" + file.getContentType());
 		
 		savedName = uploadFile(savedName,file.getBytes());
 	
-		return "/upload/uerEdit"; // uploadResult.jsp·Î Æ÷¿öµù	
+		return "/upload/uerEdit"; // uploadResult.jspï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½	
 	}
 	
-	//ÆÄÀÏÀÌ¸§ÀÌ Áßº¹µÇÁö ¾Êµµ·Ï Ã³¸®
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 		
-		//uuid »ı¼º(Universal Unique IDentifier, ¹ü¿ë °íÀ¯ ½Äº°ÀÚ , ·£´ıÀ¸·Î ÄÚµå¸¦ ¸¸µé¾î³¿)
+		//uuid ï¿½ï¿½ï¿½ï¿½(Universal Unique IDentifier, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½î³¿)
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() + "_" + originalName;
 		File target = new File(uploadPath, savedName);
 		
-		//ÀÓ½Ãµğ·ºÅä¸®¿¡ ÀúÀåµÈ ¾÷·ÎµåµÈ ÆÄÀÏÀ» ÁöÁ¤µÈ µğ·º Åä¸®·Î º¹»ç
-		//FileCopyUtils.copy(¹ÙÀÌÆ®¹è¿­,ÆÄÀÏ°´Ã¼)
+		//ï¿½Ó½Ãµï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//FileCopyUtils.copy(ï¿½ï¿½ï¿½ï¿½Æ®ï¿½è¿­,ï¿½ï¿½ï¿½Ï°ï¿½Ã¼)
 		FileCopyUtils.copy(fileData, target);
 		
 		return savedName;

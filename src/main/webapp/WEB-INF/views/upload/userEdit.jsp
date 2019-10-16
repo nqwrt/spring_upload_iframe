@@ -292,10 +292,7 @@ $(document).ready(function(){  //onload 함수
 		      });
 		    }
 		  });
-		});
-
-
-		
+		});		
 	   
 });
 

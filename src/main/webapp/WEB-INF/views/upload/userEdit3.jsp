@@ -22,6 +22,13 @@
 	    String path = request.getContextPath();
    		pageContext.setAttribute("path", path);
 	%>
+<style>
+/* .dropzone {
+width: 0px;
+height: 0px;
+min-height: 0px !important;
+} */   
+</style>
 </head>
 
 <body>
@@ -36,48 +43,48 @@
       <!-- BOXED -->
       <div class="boxed">
 
-         <!-- MAIN-NAV -->
-       <%--   <%@ include file="../includes/main-nav.jsp"%> --%>
-         <!-- END MAIN-NAV -->
-
-         <!-- ASIDE -->
-         <%-- <%@ include file="includes/aside.jsp" %> --%>
-         <!-- END ASIDE -->
-         <!--CONTENT CONTAINER-->
-         <!--===================================================-->
-         <div id="content-container">
-
-            <!--Page Title-->
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <div id="page-title">
-               <h1 class="page-header text-overflow">마이페이지</h1>
-            </div>
-            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-            <!--End page title-->
-
-            <!--Page content-->
-            <!--===================================================-->
-            <div id="page-content">
-                  <div class="row">
-                   <div class="col-lg-6">
-                       <div class="panel">
-                           <div class="panel-heading">
-                               <h3 class="panel-title">회원정보수정</h3>
-                           </div>
-                           <!-- BASIC FORM ELEMENTS -->
-                           <!--===================================================-->
-                           <form class="panel-body form-horizontal form-padding dropzone" enctype="multipart/form-data" action="${path}/mypage/edit" method="post"  id="userForm">
-                            <!--  사진 -->
+	         <!-- MAIN-NAV -->
+	         <%--   <%@ include file="../includes/main-nav.jsp"%> --%>
+	         <!-- END MAIN-NAV -->
+	
+	         <!-- ASIDE -->
+	         <%-- <%@ include file="includes/aside.jsp" %> --%>
+	         <!-- END ASIDE -->
+	         <!--CONTENT CONTAINER-->
+	         <!--===================================================-->
+	         <div id="content-container">
+	
+	            <!--Page Title-->
+	            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	            <div id="page-title">
+	               <h1 class="page-header text-overflow">마이페이지</h1>
+	            </div>
+	            <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	            <!--End page title-->
+		            <!--Page content-->
+	            <!--===================================================-->
+	            <div id="page-content">
+	                  <div class="row">
+	                   	<div class="col-lg-6">
+	                       <div class="panel">
+	                           <div class="panel-heading">
+	                               <h3 class="panel-title">회원정보수정</h3>
+	                           </div>
+	                           <!-- BASIC FORM ELEMENTS -->
+	                           <!--===================================================-->
+	                          <form class="panel-body form-horizontal form-padding dropzone" enctype="multipart/form-data" action="${path}/upload/uploadForm" method="post"  id="userForm">
+	                          	                            <!--  사진 -->
                            <div class="form-group">
                               <label class="col-md-3 control-label">사진</label>
                               <div class="col-md-9">
+                                 
                                  <!--Dropzonejs using Bootstrap theme-->
                                  <!--===================================================-->
-                                 <p style="text-align: left; margin-bottom: 0; padding: 6px 12px;">프로필에 쓰일 사진을 선택해주세요.</p>
+                                  <p style="text-align: left; margin-bottom: 0; padding: 6px 12px;">프로필에 쓰일 사진을 선택해주세요.</p>
                                  
                                  <div class="bord-top pad-ver"
                                     style="border-top: none; text-align: left; padding: 6px 12px;">
-                                    <!-- The fileinput-button span is used to style the file input field as button -->
+                                    The fileinput-button span is used to style the file input field as button
                                     <span class="btn btn-success fileinput-button dz-clickable">
                                        <i class="fa fa-plus"></i> <span>사진선택</span>
                                     </span>
@@ -87,7 +94,7 @@
                                     <div id="dz-template" class="pad-top bord-top">
                                        <div class="media">
                                           <div class="media-body">
-                                             <!--This is used as the file preview template-->
+                                             This is used as the file preview template
                                              <div class="media-block">
                                                 <div class="media-left">
                                                    <img class="dz-img" data-dz-thumbnail>
@@ -120,10 +127,10 @@
                                  </div>
                                  <!--===================================================-->
                                  <!--End Dropzonejs using Bootstrap theme-->
-                              </div>
+                             </div>
                            </div>
-
-                           <!--닉네임-->
+                           
+                                                      <!--닉네임-->
                                <div class="form-group">
                                    <label class="col-md-3 control-label">닉네임</label>
                                    <div class="col-md-9">
@@ -226,44 +233,42 @@
                                        </div>
                                    </div>
                                </div>
-                               
                               <div class="panel-footer text-right">
-                                      <button class="btn btn-success" id="btnUpload" type="submit" >수정완료</button>
+                                      <button id = "btnUpload" class="btn btn-success" type="button" >수정완료</button>
                               </div>
-                           </form>
-                           <!--===================================================-->
-                           <!-- END BASIC FORM ELEMENTS -->            
-               
-                       </div>
-                   </div>
-            </div>
-            <!--===================================================-->
-            <!--End page content-->
+	                     </form> 
+	                           <!--===================================================-->
+	                           <!-- END BASIC FORM ELEMENTS -->             
 
+                              
+	                       </div>
+	                    </div>
+	                  </div>
+	            </div>
+	            <!--===================================================-->
+	            <!--End page content-->	
+	
+	         </div>
+	         <!--===================================================-->
+	         <!--END CONTENT CONTAINER-->
+	         <button id="btn_upload" type="button" >클릭 </button>
+	
+		 <!--END CONTENT CONTAINER-->
+	      </div>
 
-         </div>
-         <!--===================================================-->
-         <!--END CONTENT CONTAINER-->
-         <button id="btn_upload" type="button" >클릭 </button>
-
-
-      </div>
-      <!-- END BOXED -->
-
-      <!-- FOOTER -->
-      <%-- <%@ include file="../includes/footer.jsp"%> --%>
-      <!-- END FOOTER -->
-
-   </div>
-   <!-- END CONTAINER -->
-</div>
-
+	
+	      <!-- FOOTER -->
+	      <%-- <%@ include file="../includes/footer.jsp"%> --%>
+	      <!-- END FOOTER -->
+	      
+		<!-- END BOXED -->
+	   </div>
 </body>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+	
 	Dropzone.autoDiscover = false;
 	var previewNode = document.querySelector("#dz-template");
 	previewNode.id = "";
@@ -273,7 +278,7 @@ $(document).ready(function() {
 	
 	var uplodaBtn = $('#dz-upload-btn'); //TODO : 필요없음
 	var removeBtn = $('#dz-remove-btn'); //TODO : 필요없음
-	var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+	var myDropzone = new Dropzone("#userForm", { // Make the whole body a dropzone
 		  url: "${path}/mypage/edit", // Set the url
 		  thumbnailWidth: 80,
 		  thumbnailHeight: 80,
@@ -284,14 +289,17 @@ $(document).ready(function() {
 		  previewsContainer: "#dz-previews", // Define the container to display the previews
 		  clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
 	});
-
-	myDropzone.on("addedfile", function(file) {
-		  //console.log(file);
-		  console.log(myDropzone);
-		  // Hookup the start button
-		 // file.previewElement.querySelector("#btn_upload").onclick = function() { myDropzone.enqueueFile(file); };
-	});
 	
+	 Dropzone.options.userForm = {
+	 init: function (e) {
+	    
+		 var drop = this;
+
+	     $('#btnUpload').on("click", function() {
+	    	 drop.processQueue(); // Tell Dropzone to process all queued files.
+	     });
+	 }
+}; 
 });	
 
 
